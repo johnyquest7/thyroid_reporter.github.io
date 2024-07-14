@@ -26,6 +26,9 @@ The Thyroid Ultrasound Report Generator is a web-based application designed to a
 - CSS3
 - JavaScript (ES6+)
 
+
+![ultrasound_report_generator](https://github.com/user-attachments/assets/578f51e1-2e21-456d-9e92-098b78150cc1)
+
 ## Disclaimer
 
 This application is provided as-is, without any warranties or guarantees of any kind, expressed or implied. While efforts have been made to ensure accuracy and reliability, the developers and contributors cannot be held responsible for any errors, omissions, or consequences arising from the use of this tool.
