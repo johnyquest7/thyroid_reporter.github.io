@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thyroid Ultrasound Report Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h2>Thyroid Ultrasound Data Entry</h2>
+            <form id="report-form">
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header">Thyroid Lobe</button>
+                        <div class="accordion-content">
+                            <div class="form-group checkboxes">
+                                <label><input type="checkbox" name="thyroid-parts" value="right-lobe"> Right Lobe</label>
+                                <label><input type="checkbox" name="thyroid-parts" value="isthmus"> Isthmus</label>
+                                <label><input type="checkbox" name="thyroid-parts" value="left-lobe"> Left Lobe</label>
+                            </div>
+                            <div class="form-group checkboxes">
+                                <label><input type="checkbox" name="lobe-appearance" value="homogeneous"> Homogeneous</label>
+                                <label><input type="checkbox" name="lobe-appearance" value="heterogeneous"> Heterogeneous</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="lobe-size-long">Lobe Size - Long (cm):</label>
+                                <input type="number" id="lobe-size-long" name="lobe-size-long" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="lobe-size-ap">Lobe Size - AP (cm):</label>
+                                <input type="number" id="lobe-size-ap" name="lobe-size-ap" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="lobe-size-trans">Lobe Size - Trans (cm):</label>
+                                <input type="number" id="lobe-size-trans" name="lobe-size-trans" step="0.1">
+                            </div>
+                            <button type="button" id="add-lobe">Add Lobe</button>
+                            <div id="lobe-list"></div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header">Thyroid Nodule</button>
+                        <div class="accordion-content">
+                            <div class="form-group checkboxes">
+                                <label><input type="checkbox" name="nodule-location" value="right-lobe"> Right Lobe</label>
+                                <label><input type="checkbox" name="nodule-location" value="isthmus"> Isthmus</label>
+                                <label><input type="checkbox" name="nodule-location" value="left-lobe"> Left Lobe</label>
+                            </div>
+                            <div class="form-group checkboxes location-within-lobe">
+                                <span>Location within lobe:</span>
+                                <label><input type="checkbox" name="location-within-lobe" value="upper"> Upper</label>
+                                <label><input type="checkbox" name="location-within-lobe" value="middle"> Middle</label>
+                                <label><input type="checkbox" name="location-within-lobe" value="lower"> Lower</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="nodule-size-long">Nodule Size - Long (cm):</label>
+                                <input type="number" id="nodule-size-long" name="nodule-size-long" step="0.1" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="nodule-size-ap">Nodule Size - AP (cm):</label>
+                                <input type="number" id="nodule-size-ap" name="nodule-size-ap" step="0.1" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="nodule-size-trans">Nodule Size - Trans (cm):</label>
+                                <input type="number" id="nodule-size-trans" name="nodule-size-trans" step="0.1" min="0">
+                            </div>
+                            <h4>ACR TI-RADS Descriptors</h4>
+                            <div class="form-group">
+                                <label>Composition:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="composition" value="cystic-0"> Cystic or almost completely cystic (0 points)</label>
+                                    <label><input type="radio" name="composition" value="spongiform-0"> Spongiform (0 points)</label>
+                                    <label><input type="radio" name="composition" value="mixed-1"> Mixed cystic and solid (1 point)</label>
+                                    <label><input type="radio" name="composition" value="solid-2"> Solid or almost completely solid (2 points)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Echogenicity:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="echogenicity" value="anechoic-0"> Anechoic (0 points)</label>
+                                    <label><input type="radio" name="echogenicity" value="hyperechoic-or-isoechoic-1"> Hyperechoic or isoechoic (1 point)</label>
+                                    <label><input type="radio" name="echogenicity" value="hypoechoic-2"> Hypoechoic (2 points)</label>
+                                    <label><input type="radio" name="echogenicity" value="very-hypoechoic-3"> Very hypoechoic (3 points)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Shape:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="shape" value="wider-than-tall-0"> Wider-than-tall or equal (0 points)</label>
+                                    <label><input type="radio" name="shape" value="taller-than-wide-3"> Taller-than-wide (3 points)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Margin:</label>
+                                <div class="radio-group">
+                                    <label><input type="radio" name="margin" value="smooth-0"> Smooth (0 points)</label>
+                                    <label><input type="radio" name="margin" value="ill-defined-0"> Ill-defined (0 points)</label>
+                                    <label><input type="radio" name="margin" value="lobulated-or-irregular-2"> Lobulated or irregular (2 points)</label>
+                                    <label><input type="radio" name="margin" value="extra-thyroidal-extension-3"> Extra-thyroidal extension (3 points)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Echogenic Foci:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="echogenic-foci" value="none-0"> None or large comet-tail artifacts (0 points)</label>
+                                    <label><input type="checkbox" name="echogenic-foci" value="macrocalcifications-1"> Macrocalcifications (1 point)</label>
+                                    <label><input type="checkbox" name="echogenic-foci" value="peripheral-2"> Peripheral (rim) calcifications (2 points)</label>
+                                    <label><input type="checkbox" name="echogenic-foci" value="punctate-3"> Punctate echogenic foci (3 points)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="total-points">Total Points:</label>
+                                <input type="text" id="total-points" name="total-points" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="ti-rads-score">TI-RADS Score:</label>
+                                <input type="text" id="ti-rads-score" name="ti-rads-score" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="recommendations">Recommendations:</label>
+                                <textarea id="recommendations" name="recommendations" rows="3" readonly></textarea>
+                            </div>
+                            <button type="button" id="add-nodule">Add Nodule</button>
+                            <div id="nodule-list"></div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header">Lymph Node</button>
+                        <div class="accordion-content">
+                            <div class="form-group checkboxes">
+                                <label><input type="checkbox" name="lymph-location" value="right"> Right</label>
+                                <label><input type="checkbox" name="lymph-location" value="central"> Central</label>
+                                <label><input type="checkbox" name="lymph-location" value="left"> Left</label>
+                            </div>
+                            <div class="form-group checkboxes">
+                                <label><input type="checkbox" name="lymph-level" value="I"> I (submental and submandibular)</label>
+                                <label><input type="checkbox" name="lymph-level" value="II"> II (upper jugular)</label>
+                                <label><input type="checkbox" name="lymph-level" value="III"> III (middle jugular)</label>
+                                <label><input type="checkbox" name="lymph-level" value="IV"> IV (lower jugular)</label>
+                                <label><input type="checkbox" name="lymph-level" value="V"> V (posterior triangle)</label>
+                                <label><input type="checkbox" name="lymph-level" value="VI"> VI (anterior compartment)</label>
+                                <label><input type="checkbox" name="lymph-level" value="VII"> VII (superior mediastinal)</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="lymph-node-size">Lymph Node Size (cm):</label>
+                                <input type="number" id="lymph-node-size" name="lymph-node-size" step="0.1" min="0">
+                            </div>
+                            <button type="button" id="add-lymph-node">Add Lymph Node</button>
+                            <div id="lymph-node-list"></div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-header">Impression</button>
+                        <div class="accordion-content">
+                            <div class="form-group">
+                                <h4>General</h4>
+                                <div class="checkboxes">
+                                    <label><input type="checkbox" name="impression-general" value="normal"> Normal thyroid sonogram</label>
+                                    <label><input type="checkbox" name="impression-general" value="small-nodules"> Small thyroid nodules</label>
+                                    <label><input type="checkbox" name="impression-general" value="multinodular"> Multinodular goiter</label>
+                                    <label><input type="checkbox" name="impression-general" value="hashimotos"> Consistent with Hashimoto's (lymphocytic) thyroiditis</label>
+                                    <label><input type="checkbox" name="impression-general" value="stability"> Nodules show stability over at least 5 years</label>
+                                    <label><input type="checkbox" name="impression-general" value="no-followup"> No imaging follow up is recommended unless clinically indicated</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4>Consider biopsy for following nodules</h4>
+                                <div class="checkboxes">
+                                    <label><input type="checkbox" name="biopsy-nodules" value="1"> 1</label>
+                                    <label><input type="checkbox" name="biopsy-nodules" value="2"> 2</label>
+                                    <label><input type="checkbox" name="biopsy-nodules" value="3"> 3</label>
+                                    <label><input type="checkbox" name="biopsy-nodules" value="4"> 4</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h4>Additional findings</h4>
+                                <textarea id="additional-findings" name="additional-findings" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="generate-report">Generate Report</button>
+            </form>
+        </div>
+        <div class="report-section">
+            <h2>Thyroid Ultrasound Report</h2>
+            <div id="report-preview">
+                <div id="preview-content"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
