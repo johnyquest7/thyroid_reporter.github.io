@@ -7,10 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const lobeList = document.getElementById('lobe-list');
     const addLymphNodeButton = document.getElementById('add-lymph-node');
     const lymphNodeList = document.getElementById('lymph-node-list');
+    const copyButton = document.getElementById('copy-report');
     let nodules = [];
     let lobes = [];
     let lymphNodes = [];
 
+
+    // Copy report to clipboard
+    copyButton.addEventListener('click', () => {
+        const reportContent = document.getElementById('preview-content').innerText;
+        navigator.clipboard.writeText(reportContent).then(() => {
+            alert('Report copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy report: ', err);
+            alert('Failed to copy report. Please try again.');
+        });
+    });
+    
     // Accordion functionality
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     accordionHeaders.forEach(header => {
