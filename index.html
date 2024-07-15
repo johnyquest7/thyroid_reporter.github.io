@@ -183,7 +183,6 @@
                 </div>
                 <button type="submit" id="generate-report">Generate Report</button>
             </form>
-            <div id="visitor-count">Visitors: <span id="count">Loading...</span></div>
         </div>
         <div class="report-section">
             <h2>Thyroid Ultrasound Report</h2>
@@ -194,33 +193,5 @@
         </div>
     </div>
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const apiUrl = 'https://api.countapi.xyz/hit/johnyquest7.github.io/thyroid_reporter';
-            const countElement = document.getElementById('count');
-            const apiStatusElement = document.getElementById('api-status');
-
-            fetch(apiUrl)
-                .then(response => {
-                    console.log('API Response:', response);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('API Data:', data);
-                    countElement.textContent = data.value;
-                    apiStatusElement.textContent = 'API call successful';
-                    apiStatusElement.style.color = 'green';
-                })
-                .catch(error => {
-                    console.error('Error fetching visitor count:', error);
-                    countElement.textContent = 'Unable to load';
-                    apiStatusElement.textContent = `Error: ${error.message}`;
-                    apiStatusElement.style.color = 'red';
-                });
-        });
-    </script>
 </body>
 </html>
