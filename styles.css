@@ -213,3 +213,37 @@ button:hover {
 .mb-10 {
     margin-bottom: 10px;
 }
+
+
+
+#report-preview {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+#report-preview h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#copy-report {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#copy-report:hover {
+    background-color: #45a049;
+}
+
+#visitor-count {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
