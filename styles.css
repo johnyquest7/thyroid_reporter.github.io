@@ -242,17 +242,3 @@ button:hover {
     background-color: #45a049;
 }
 
-#visitor-count {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-}
-#visitor-count, #api-status {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-#api-status {
-    font-style: italic;
-}
